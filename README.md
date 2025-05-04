@@ -1,14 +1,14 @@
-📘 Projeto Django REST API - Backend
+# 📘 Projeto Django REST API - Backend
 
-Este projeto é uma API REST construída com Django e Django REST Framework, com autenticação JWT e documentação integrada via Swagger.
+## Este projeto é uma API REST construída com Django e Django REST Framework, com autenticação JWT e documentação integrada via Swagger.
 
-🚀 Como rodar o projeto
+#🚀 Como rodar o projeto
 
-Clone o repositório
+### Clone o repositório
 
-Crie um ambiente virtual
+### Crie um ambiente virtual
 
-python -m venv venv
+### python -m venv venv
 
 Ative o ambiente virtualNo Windows:
 
