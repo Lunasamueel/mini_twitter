@@ -21,3 +21,5 @@ dj-database-url
 
 # Suporte a imagens
 Pillow
+
+django-cors-headers
