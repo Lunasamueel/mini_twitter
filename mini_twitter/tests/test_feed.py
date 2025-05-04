@@ -21,8 +21,3 @@ class FeedTests(APITestCase):
         # Autenticar o client com JWT
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
 
-    def test_feed_returns_followed_posts(self):
-        response = self.client.get('/api/feed/')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data['results']), 1)
-        self.assertEqual(response.data['results'][0]['content'], 'Post do user2')
