@@ -7,12 +7,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import status
 from django.utils.translation import gettext_lazy as _
+from rest_framework.views import APIView
+
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
@@ -29,36 +31,31 @@ class PostViewSet(viewsets.ModelViewSet):
             raise PermissionDenied(_("Você não tem permissão para apagar esta publicação."))
         instance.delete()
 
-    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
-    def like(self, request ,pk=None):
-        post = self.get_object()
-        user = request.user
 
-        if Like.objects.filter(user=user, post=post).exists():
-            return Response(
-                {'detail':_('Você já curtiu esse post.')},
-                status=status.HTTP_400_BAD_REQUEST)
-        
-        Like.objects.create(user=user, post=post)
-        return Response(
-            {'detail':_('Post curtido com sucesso.')}, 
-            status=status.HTTP_201_CREATED)
+class ToggleLikeView(APIView):
+    permission_classes = [IsAuthenticated]
 
-    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
-    def unlike(self, request, pk=None):
-        post = self.get_object()
+    def post(self, request, post_id):
         user = request.user
 
         try:
-            like = Like.objects.get(user=user, post=post)
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response({'error': 'Post não encontrado.'}, status=404)
+
+        like, created = Like.objects.get_or_create(user=user, post=post)
+
+        if not created:
             like.delete()
-            return Response(
-            {'detail':_('Curtida removida com sucesso.')}, 
-            status=status.HTTP_200_OK)
-        except Like.DoesNotExist:
-            return Response(
-                {'detail':_('Você não curtiu esse post.')},
-                status=status.HTTP_400_BAD_REQUEST)
+            liked = False
+        else:
+            liked = True
 
+        # Retorna também o número atualizado de curtidas
+        likes_count = Like.objects.filter(post=post).count()
 
+        return Response({
+            'liked': liked,
+            'likes_count': likes_count
+        }, status=200)
 

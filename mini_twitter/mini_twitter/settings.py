@@ -1,7 +1,14 @@
 from pathlib import Path
+from corsheaders.defaults import default_headers
+import dj_database_url
+from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Diretório de uploads
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,6 +35,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
     'drf_yasg',
     'posts',
     'follows',
@@ -44,6 +52,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Authorization',
 ]
 
 ROOT_URLCONF = 'mini_twitter.urls'
@@ -69,12 +86,13 @@ WSGI_APPLICATION = 'mini_twitter.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+
+# DATABASES = {
+#       'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL', 'postgres://postgres:postgres@db:5432/postgres')
+#     )
+# }
 
 
 # Password validation
@@ -151,3 +169,4 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432'),
     }
 }
+
