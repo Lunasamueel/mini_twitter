@@ -10,12 +10,12 @@
 
 ### python -m venv venv
 
-Ative o ambiente virtualNo Windows:
+### Ative o ambiente virtualNo Windows:
 
-venv\Scripts\activate
+### venv\Scripts\activate
 
-crie o arquivo .env:
-  # .env
+# crie o arquivo .env:
+  ## .env
     DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
     DEBUG=True
     SECRET_KEY=django-insecure-h^gqby#ugeu7tgt!^z#$1z3(x02p3a05$nitpfghl&$4bx!o0j
@@ -26,75 +26,73 @@ crie o arquivo .env:
     DB_PORT=5432
 
 
-Instale as dependências
+# Instale as dependências
 
-pip install -r requirements.txt
+## pip install -r requirements.txt
 
-(Opcional) Instale o drf-yasg, caso não esteja incluso no requirements.txt
+### (Opcional) Instale o drf-yasg, caso não esteja incluso no requirements.txt
 
-pip install drf-yasg
+### pip install drf-yasg
 
-📚 Documentação da API
+# 📚 Documentação da API
 
-Todos os endpoints estão documentados e disponíveis via Swagger:
+## Todos os endpoints estão documentados e disponíveis via Swagger:
 
-🔗 http://localhost:8000/swagger/
+## 🔗 http://localhost:8000/swagger/
 
-🔐 Autenticação JWT
+# 🔐 Autenticação JWT
 
-Para testar os endpoints autenticados, você precisa obter um token JWT.
+## Para testar os endpoints autenticados, você precisa obter um token JWT.
 
-★ Exemplo de usuário para autenticação
+# ★ Exemplo de usuário para autenticação
 
-Usuário: samuel
+## Usuário: samuel Senha: 123456
 
-Senha: 123456
+## Como autenticar no Swagger
 
-Como autenticar no Swagger
+## Clique em "Authorize" no topo direito.
 
-Clique em "Authorize" no topo direito.
+## Insira o token JWT assim:
 
-Insira o token JWT assim:
+## Bearer SEU_TOKEN_AQUI
 
-Bearer SEU_TOKEN_AQUI
+## Lembre-se de incluir a palavra Bearer antes do token.
 
-Lembre-se de incluir a palavra Bearer antes do token.
+# 📂 Funcionalidades
 
-📂 Funcionalidades
+## Registro e login de usuários
 
-Registro e login de usuários
+### Autenticação com JWT
 
-Autenticação com JWT
+### Sistema de seguir e deixar de seguir usuários
 
-Sistema de seguir e deixar de seguir usuários
+### Publicações com conteúdo e imagem
 
-Publicações com conteúdo e imagem
+### Curtidas em posts com atualização em tempo real (like/unlike)
 
-Curtidas em posts com atualização em tempo real (like/unlike)
+### Feed com paginação dos posts de usuários seguidos
 
-Feed com paginação dos posts de usuários seguidos
+# 🛠 Requisitos
 
-🛠 Requisitos
+## Python 3.9+
 
-Python 3.9+
+## Django 4+
 
-Django 4+
+## Django REST Framework
 
-Django REST Framework
+## Simple JWT
 
-Simple JWT
+## drf-yasg (Swagger)
 
-drf-yasg (Swagger)
+# Reactjs - Frontend
 
-Reactjs - Frontend
+## baixe o projeto
 
-baixe o projeto
+## execute npm install
 
-execute npm install
+## execute npm run dev
 
-execute npm run dev
-
-o projeto deve rodar na porta http://localhost:5173/
+## o projeto deve rodar na porta http://localhost:5173/
 
 
 
