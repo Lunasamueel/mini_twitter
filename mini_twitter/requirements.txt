@@ -1,0 +1,25 @@
+# Django
+Django>=4.0
+
+# Django REST Framework
+djangorestframework
+
+# JWT Authentication
+djangorestframework-simplejwt
+
+# Swagger / Redoc auto-documentação
+drf-yasg
+
+# PostgreSQL connector
+psycopg2-binary
+
+# Variáveis de ambiente seguras
+python-decouple
+
+# Utilitário para parsing da URL do banco de dados
+dj-database-url
+
+# Suporte a imagens
+Pillow
+
+django-cors-headers
